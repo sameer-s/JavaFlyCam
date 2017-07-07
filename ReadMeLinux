@@ -6,6 +6,23 @@ Naming may vary slightly.
 You also need to set up a set of links (easily done using ln -s): 
 	from libflycapture.so -> libflycapture.so.2 
 	and from libflycapture-c.so -> libflycapture.so.2
+	
+Finally, you need to install the following dependencies:
+1) libraw1394-11
+2) libgtkmm-2.4-dev
+3) libglademm-2.4-dev
+4) libgtkglextmm-x11-1.2-dev
+5) libusb-1.0-0 (version 1.0.17 or greater recommended)
+
+The README for FlyCapture gives the following command for Ubuntu 16.04:
+sudo apt-get install libraw1394-11 libgtkmm-2.4-dev libglademm-2.4-dev libgtkglextmm-x11-1.2-dev libusb-1.0-0
+
+The following command is what I used on my Fedora 24 system:
+sudo dnf install libraw1394 gtkmm24-devel libglademm24 gtkglextmm-devel libusb
+
+I think that some of these dependencies (#2, #3 and #4) aren't actually needed for the library but are for the GUI application, but I'm not sure. I have them all installed.
+
+You may need to do some setup of the raw1394 kernel module, and add a udev rule for your camera device. Since I don't have the camera hardware right now, I can't test it, but I will try to add more information once I have access to it.
 
 =========================================================================
 Some extra steps are also needed if you want to compile
@@ -24,3 +41,5 @@ gcc -shared -o libFlyCamera.so -fPIC FlyCamera.cpp -L ./ -lflycapture -lflycaptu
 =========================================================================
 
 For any further information, read the "ReadMe" file.
+Note that since I don't actually have any camera hardware, I am unable to test this Linux build. 
+Sameer Suri
