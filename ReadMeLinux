@@ -1,0 +1,26 @@
+To run this on Linux, you need the shared object (so) files libflycapture.so.2 and libflycapture-c.so.2, which can be extracted from the .deb files from the website of those who make the FlyCapture library. The two .deb files I had to get these from were:
+	libflycapture-2.11.3.121_amd64.deb
+	libflycapture-c-2.11.3.121_amd64.deb
+Naming may vary slightly.
+
+You also need to set up a set of links (easily done using ln -s): 
+	from libflycapture.so -> libflycapture.so.2 
+	and from libflycapture-c.so -> libflycapture.so.2
+
+=========================================================================
+Some extra steps are also needed if you want to compile
+
+You will need the header files (in this directory):
+	fly2cam_FlyCamera.h (which is already here)
+	FlyCapture2_C.h
+	FlyCapture2Defs_C.h
+	FlyCapture2Platform_C.h
+I was able to extract the other three header files from libflycapture-c-2.11.3.121_amd64-dev.deb -- note that this is the "dev" version.
+
+You can now compile the shared object file. The command that I used is below. It may vary slightly based on your JDK install location, so edit those accordingly (those paths need to be there to find jni.h and jni-md.h).
+
+gcc -shared -o libFlyCamera.so -fPIC FlyCamera.cpp -L ./ -lflycapture -lflycapture-c -I . -I /usr/java/jdk1.8.0_91/include/ -I /usr/java/jdk1.8.0_91/include/linux/
+
+=========================================================================
+
+For any further information, read the "ReadMe" file.
