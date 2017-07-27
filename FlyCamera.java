@@ -13,7 +13,11 @@ public class FlyCamera {
       errn; // returns an error number, see ErrorNumberText()
   private long stuff; // used for error reporting, or not at all
 
+<<<<<<< HEAD
+  public native boolean Connect(int frameRate, int exposure); // required at start, sets rose,colz,tile
+=======
   public native boolean Connect(int frameRate); // required at start, sets rose,colz,tile
+>>>>>>> d3d7db5d385d62eb364cd15d20340987c4d9a5f2
   public native boolean NextFrame(byte[] pixels); // fills pixels, false if can't
   public native void Finish(); // required at end to prevent memory leaks
 

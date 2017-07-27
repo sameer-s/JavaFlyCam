@@ -1,1 +1,7 @@
 ignore/
+FlyCamera2.dll
+FlyCamera2_C.dll
+libflycapture.so
+libflycapture.so.2
+libflycapture-c.so
+libflycapture-c.so.2

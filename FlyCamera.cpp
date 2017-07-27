@@ -26,7 +26,11 @@ extern "C" {
 	* Signature: ()V
 	*/
 	JNIEXPORT jboolean JNICALL Java_fly2cam_FlyCamera_Connect
+<<<<<<< HEAD
+	(JNIEnv *env, jobject thisObj, jint frameRate, jint exposure, jint shutter, jint gain) {
+=======
 	(JNIEnv *env, jobject thisObj, jint frameRate) {
+>>>>>>> d3d7db5d385d62eb364cd15d20340987c4d9a5f2
 		int why = 0, rose = 0, colz = 0, tile = 0, form = 0, sofar = 0, DebugShow = 0;
 		unsigned int nx, stride = 0;
 		fc2Error nerror = FC2_ERROR_OK;
@@ -34,7 +38,11 @@ extern "C" {
 		fc2Config info; // so we can look at what it thinks it will do
 		fc2Property propty; // to set frame rate
 
+<<<<<<< HEAD
+		// Get a reference to this object's class
+=======
 							// Get a reference to this object's class
+>>>>>>> d3d7db5d385d62eb364cd15d20340987c4d9a5f2
 		jclass thisClass = env->GetObjectClass(thisObj);
 		// Get the Field ID of the instance variables..
 		jfieldID stuffID = env->GetFieldID(thisClass, "stuff", "J");
@@ -42,6 +50,11 @@ extern "C" {
 		jfieldID roseID = env->GetFieldID(thisClass, "rose", "I");
 		jfieldID colzID = env->GetFieldID(thisClass, "colz", "I");
 		jfieldID tileID = env->GetFieldID(thisClass, "tile", "I");
+<<<<<<< HEAD
+		
+
+=======
+>>>>>>> d3d7db5d385d62eb364cd15d20340987c4d9a5f2
 
 		while (true) {
 			nRGBpixels = 0;
@@ -105,7 +118,13 @@ extern "C" {
 				why = 5;
 				sofar = 0;
 			}
+<<<<<<< HEAD
+	
+			Java_fly2cam_FlyCamera_Settings(env, thisObj, exposure, shutter, gain);				
+					
+=======
 
+>>>>>>> d3d7db5d385d62eb364cd15d20340987c4d9a5f2
 			why++; // why = 6
 			nerror = fc2StartCapture(theContext); // uses current (initial) video mode
 			if (nerror != FC2_ERROR_OK) break;
@@ -283,6 +302,56 @@ extern "C" {
 		if (errnID != NULL) env->SetIntField(thisObj, errnID, (jint)why);
 	} //~Finish
 
+<<<<<<< HEAD
+	/*
+	* Class:     fly2cam_FlyCamera
+	* Method:    Settings                                                     // Settings(..
+	* Signature: ()V
+	*/
+	JNIEXPORT void JNICALL Java_fly2cam_FlyCamera_Settings
+	(JNIEnv *env, jobject thisObj, jint exposure, jint shutter, jint gain)
+	{
+		fc2Property propty2; // to set auto exposure
+		fc2Property propty3; // to set shutter
+		fc2Property propty4; // to set gain
+		int nerror;
+
+		propty2.type = FC2_AUTO_EXPOSURE; // 1 to 1023
+		nerror = fc2GetProperty(theContext, &propty2);
+		if (nerror != FC2_ERROR_OK) return;
+		propty2.onOff = true;
+		propty2.autoManualMode = exposure < 1 || exposure > 1023;
+		propty2.onePush = false;
+		propty2.absControl = false;
+		propty2.valueA = exposure;
+		nerror = fc2SetProperty(theContext, &propty2);
+		if (nerror != FC2_ERROR_OK) return;
+
+		propty3.type = FC2_SHUTTER; // 1 to 966
+		nerror = fc2GetProperty(theContext, &propty3);
+		if (nerror != FC2_ERROR_OK) return;
+		propty3.onOff = true;
+		propty3.autoManualMode = shutter < 1 || shutter > 966;
+		propty3.onePush = false;
+		propty3.absControl = false;
+		propty3.valueA = shutter;
+		nerror = fc2SetProperty(theContext, &propty3);
+		if (nerror != FC2_ERROR_OK) return;
+
+		propty4.type = FC2_GAIN; // 256 to 814
+		nerror = fc2GetProperty(theContext, &propty4);
+		if (nerror != FC2_ERROR_OK) return;
+		propty4.onOff = true;
+		propty4.autoManualMode = gain < 256 || gain > 814;
+		propty4.onePush = false;
+		propty4.absControl = false;
+		propty4.valueA = gain;
+		nerror = fc2SetProperty(theContext, &propty4);
+		if (nerror != FC2_ERROR_OK) return;	
+	}
+
+=======
+>>>>>>> d3d7db5d385d62eb364cd15d20340987c4d9a5f2
 #ifdef __cplusplus
 }
 #endif // (FlyCamera DLL) [DLL]
