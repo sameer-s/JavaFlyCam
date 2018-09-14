@@ -41,5 +41,4 @@ gcc -shared -o libFlyCamera.so -fPIC FlyCamera.cpp -L ./ -lflycapture -lflycaptu
 =========================================================================
 
 For any further information, read the "ReadMe" file.
-Note that since I don't actually have any camera hardware, I am unable to test this Linux build. 
 Sameer Suri
